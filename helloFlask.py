@@ -8,14 +8,20 @@ app = Flask(__name__)
 @app.route('/temperature', methods=['POST'])
 def temperature():
     city = request.form['City']
-    url_latlon= 'http://api.openweathermap.org/data/2.5/weather?lat=35&lon=100&appid=d17bac13d9616e1dd429b0c03e869997'
+    # url_latlon= 'http://api.openweathermap.org/data/2.5/weather?lat=35&lon=100&appid=d17bac13d9616e1dd429b0c03e869997'
     url_city = 'http://api.openweathermap.org/data/2.5/weather?q='+city+',dk&appid=d17bac13d9616e1dd429b0c03e869997'
     response = requests.get(url_city)
     json_object = response.json()
     temp_kelvin = float(json_object['main']['temp'])
     temp_celsius = round(temp_kelvin - 273, 1)
-    # return str(temp_kelvin)  # return only temperature
-    return render_template('temperature.html', city=city, temp=temp_celsius)  # return temperature + temperature.html
+
+    lon = json_object['coord']['lon']
+    lat = json_object['coord']['lat']
+    return render_template('temperature.html',
+                           city=city,
+                           temp=temp_celsius,
+                           lon=lon,
+                           lat=lat)  # return temperature + temperature.html
 
 
 @app.route('/geography')
