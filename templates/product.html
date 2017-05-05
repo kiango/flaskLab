@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<h2>Product Specification for: {{ pid }}</h2>
+
+{{ msg }}
+
+{% for k in ps %}
+ <p>{{k, ps[k]}}</p>
+{% endfor %}
+
+</body>
+</html>

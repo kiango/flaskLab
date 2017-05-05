@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<h1>Kids shoes sorted by price</h1>
+<h3>HTTP response status: {{httpStat}}</h3>
+
+{% for items in kpp %}
+      <p>{{ items }} </p>
+{% endfor %}
+
+</body>
+</html>

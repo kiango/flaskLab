@@ -1,0 +1,43 @@
+h1 { color: khaki }
+
+h2 { color: green }
+
+h3 { color: gold }
+
+h4 { color: blue }
+
+h6 { color: blue;
+display: flex;
+margin: auto;
+}
+
+button{
+vertical-align: middle;
+background: aqua;
+}
+
+.input-area button {
+background-color: aqua;
+}
+
+.btn{
+height:2em;
+width:10em;
+}
+
+
+.pagination-page-info {
+    padding: .6em;
+    padding-left: 0;
+    width: 40em;
+    margin: .5em;
+    margin-left: 0;
+    font-size: 12px;
+}
+.pagination-page-info b {
+    color: black;
+    background: #6aa6ed;
+    padding-left: 2px;
+    padding: .1em .25em;
+    font-size: 150%;
+}

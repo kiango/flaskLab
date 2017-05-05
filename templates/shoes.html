@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Shoes</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+<h2>Main Page</h2>
+
+<!--div class="input-area"></div-->
+
+          <h6>Input product-ID : </h6>
+
+<form method = "GET" action = "/get_product">
+    <input type="text" name="get_data" placeholder="Enter a number" maxlength="6">
+    <input type="submit" value="Get product">
+</form>
+
+
+<br>
+
+
+    <form action="get_products" method="GET">
+        <button class="btn" type="submit" value="getAllProducts">All products</button>
+    </form>
+
+    <form action="get_kids_items" method="GET">
+        <button class="btn" type="submit" value="getKidsProducts">Kids products</button>
+    </form>
+
+{% for items in pp %}
+      <p>{{ items }} </p>
+{% endfor %}
+
+</body>
+</html>
+
+

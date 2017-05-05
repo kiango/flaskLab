@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Shoes</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+<h2>All products sorted by price</h2>
+<h3>{{ msg }}</h3>
+
+{% for items in pp %}
+      <p>{{ items }} </p>
+{% endfor %}
+
+</body>
+</html>
