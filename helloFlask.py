@@ -5,6 +5,26 @@ import requests
 import re
 import operator
 import urllib3
+import json
+
+
+NAME = 'name: '
+SIZES = 'sizes: '
+IS_CUSTOMIZABLE = 'is_customizable: '
+DELIVERY = 'delivery: '
+KIDS = 'kids: '
+KID_ADULT = 'kid_adult: '
+FREE_PORTO = 'free_porto: '
+IMAGE = 'image: '
+PACKAGE = 'package: '
+PRICE = 'price: '
+URL = 'url: '
+ONLINE = 'online: '
+PRICE_OLD = 'price_old: '
+CURRENCY = 'currency: '
+IMG_URL = 'img_url: '
+ID = 'id: '
+WOMEN = 'women: '
 
 
 app = Flask(__name__)
@@ -27,20 +47,40 @@ def get_json_object():
 @app.route('/get_product', methods=['GET'])
 def get_product():
     message = 'no match!'
-    product_spec = ''
 
     # validate input first
     product_id = request.args.get('get_data')
-    if not re.match("^[0-9]{6}$", product_id):
+    if not re.match("^[0-9]{1,6}$", product_id):
         return render_template('product.html', pid=product_id, msg=message)
     else:
         json_object_shoes = get_json_object()
+        # alternative item retrieval
+        # for i, value in enumerate(json_object_shoes['products']):
+        #     print(json_object_shoes['products'][i]['id'])
+        # todo: improve item retrieval by iteration
+        product_spec = []
         for products in json_object_shoes['products']:
             if products['id'] == product_id:
-                product_spec = products
+                product_spec.append(NAME + products['name'])
+                product_spec.append(SIZES + products['sizes'])
+                product_spec.append(IS_CUSTOMIZABLE + products['is_customizable'])
+                product_spec.append(DELIVERY + products['delivery'])
+                product_spec.append(KIDS + products['kids'])
+                product_spec.append(KID_ADULT + products['kid_adult'])
+                product_spec.append(FREE_PORTO + products['free_porto'])
+                product_spec.append(IMAGE + products['image'])
+                product_spec.append(PACKAGE + products['package'])
+                product_spec.append(PRICE + products['price'])
+                product_spec.append(URL + products['url'])
+                product_spec.append(ONLINE + products['online'])
+                product_spec.append(PRICE_OLD + products['price_old'])
+                product_spec.append(CURRENCY + products['currency'])
+                product_spec.append(IMG_URL + products['img_url'])
+                product_spec.append(ID + products['id'])
+                product_spec.append(WOMEN + products['women'])
                 return render_template('product.html', pid=product_id, ps=product_spec)
-            else:
-                return render_template('product.html', pid=product_id, msg=message)
+                break
+        return render_template('product.html', pid=product_id, msg=message)
 
 
 @app.route('/get_kids_items', methods=['GET'])
@@ -57,7 +97,7 @@ def get_kids_items():
 
     price_kids = [float(i) for i in price_kids]  # convert string to float
 
-    # build dictionary of product name and price, sort by dictionary value (lowest price)
+    # build dictionary of product name and price lists, sort by dictionary value (lowest price first)
     kids_product_price = dict(zip(products_kids, price_kids))
     kids_product_price = sorted(kids_product_price.items(), key=operator.itemgetter(1))
     return render_template('kids.html', kpp=kids_product_price)
