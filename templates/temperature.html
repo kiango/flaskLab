@@ -3,8 +3,8 @@
     <title>Current Temperature: </title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body>
 
+<body>
 {% if city=='odense' %}
 <h2>The current temperature in {{ city }} is: {{ temp }} degrees. </h2>
 {% else %}
@@ -12,6 +12,6 @@
 {% endif %}
 <br>
 <h6>City coordinates lon: {{ lon }} , lat: {{ lat }} </h6>
-
 </body>
+
 </html>

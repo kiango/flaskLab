@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request
-from pprint import pprint
 import data_processing
 import time
 import requests

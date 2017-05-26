@@ -1,7 +1,8 @@
 import locale
 from operator import itemgetter
 
-''' Sorting a dictionary type by price through
+''' 
+Sorting a dictionary type by price through
 converting local currency to float,
 sorting and converting back to local currency (DKK)
 '''
