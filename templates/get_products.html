@@ -4,16 +4,59 @@
 <head>
     <meta charset="UTF-8">
     <title>Shoes</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body>
-<h2>All products sorted by price</h2>
-<h3>{{ msg }}</h3>
 
+<div class="container">
+{{ msg }}
+
+<h2>All Products</h2>
+    <h3>Name, Price, Currency</h3>
+
+
+
+<div class="row">
+
+    <div class="col-sm-6 offset-sm-4">
+        <table class="table table-striped">
+        {% for product in data %}
+            <tr>
+                <td>{{ product.name }}</td>
+                <td>{{ product.price }}</td>
+                <td>{{ product.currency }}</td>
+            </tr>
+        {% endfor %}
+        </table>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-sm-6">
+
+        {% for i in range(0, length, 5) %}
+            <a href={{ url_for('get_products', skip=loop.index-1)}}>Side {{loop.index}}</a>
+        {% endfor %}
+
+    </div>
+</div>
+
+    <div>
+        <p>I alt {{ length }} elementer i listen</p>
+    </div>
+
+<!--
 {% for items in pp %}
       <p>{{ items }} </p>
-{% endfor %}
 
+        <p>{{ pp.Name }} </p>
+
+{% endfor %}
+-->
+</div>
 </body>
 </html>
