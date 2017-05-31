@@ -9,6 +9,11 @@
 <body>
 <h2>Product Specification for: {{ pid }}</h2>
 
+{% if not ps %}
+<p>Item not found !</p>
+{% endif %}
+
+
 {{ msg }}
 
 {% for k in ps %}
