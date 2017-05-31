@@ -22,7 +22,7 @@ fresh_json = ''
 time_of_get_json_object = 0
 
 
-# getting data from API, register the time method call,
+# getting data from API, register the time of method call,
 # sort data by data_processing.data_sorter(fresh_json)
 # and save the data in global variable
 def get_json_object():
@@ -66,8 +66,6 @@ def request_for_product():
 
 @app.route('/get_kids_items', methods=['GET'])
 def get_kids_items():
-    # json_object_shoes = get_json_object()
-    # pprint(fresh_json)
 
     kids_product_msg = 'No kids products'
     products_kids = []
@@ -77,8 +75,8 @@ def get_kids_items():
         if i['kids'] == '1':
             products_kids.append(i['name'])
             price_kids.append(i['price'])
-
     kids_product_price = dict(zip(products_kids, price_kids))
+    
     # check if dictionary is empty
     if bool(kids_product_price):
         return render_template('kids.html', kpp=kids_product_price)
